@@ -1,3 +1,4 @@
+import NairaSymbol from "@/components/naira-symbol";
 import { Button } from "@/components/ui/button";
 import { useFetchTableData } from "@/hooks/fetchers/useFetchTableData";
 
@@ -46,10 +47,17 @@ const ConfirmTransfer = () => {
         Confirm Transfer
       </h6>
       <p className="text-primaryBlack text-center mt-4 mb-10">
-        Are you sure you want to transfer {requestPayload.amount} to{" "}
-        {requestPayload.beneficiaryAccountNumber}
+        Are you sure you want to transfer{" "}
+        <span className="text-primaryBlue font-semibold">
+          <NairaSymbol />
+          {requestPayload.amount.toLocaleString()}
+        </span>{" "}
+        to{" "}
+        <span className="text-primaryBlue font-semibold">
+          {Configs.beneficiaryName}
+        </span>
       </p>
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex item  s-center justify-center gap-4">
         <Button
           onClick={() => closeModal()}
           variant="ghost"

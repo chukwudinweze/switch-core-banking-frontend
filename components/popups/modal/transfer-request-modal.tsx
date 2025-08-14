@@ -27,6 +27,9 @@ import useModalStore from "@/hooks/store/useModalStore";
 const formSchema = Yup.object().shape({
   sourceAccountId: Yup.string().required("Please select an account"),
   amount: Yup.number()
+    .transform((value, originalValue) =>
+      originalValue === "" ? undefined : value
+    )
     .min(1, "Amount must be greater than 0")
     .required("Amount is required"),
   beneficiaryAccountNumber: Yup.string()
