@@ -32,11 +32,11 @@ const ConfirmTransfer = () => {
       if (response?.status === "Completed") {
         closeModal();
         openModal("successModal");
+        await mutate(undefined, { revalidate: true });
       }
     } catch (error) {
       // console.log(error);
     } finally {
-      await mutate(undefined, { revalidate: true });
       setIsLoading(false);
     }
   };

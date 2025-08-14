@@ -237,6 +237,8 @@ export const apiAccountLookup = async (
   return response.data;
 };
 
+import axios from "axios";
+
 export const apiInitiateTransfer = async (
   transferData: TransferRequest
 ): Promise<TransferResponse | null> => {
@@ -252,9 +254,22 @@ export const apiInitiateTransfer = async (
     if (response.data.succeeded) {
       return response.data.data || null;
     } else {
+      toast({
+        variant: "destructive",
+        title: response.data.message || "Failed to complete transfer",
+      });
       return null;
     }
   } catch (error) {
+    const errorMessage =
+      axios.isAxiosError(error) && error.response
+        ? error.response.data?.message
+        : "Failed to complete transfer";
+
+    toast({
+      variant: "destructive",
+      title: errorMessage,
+    });
     return null;
   }
 };
