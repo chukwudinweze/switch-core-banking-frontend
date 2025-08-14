@@ -1,0 +1,43 @@
+import { Transaction } from "@/lib/types/bankingTypes";
+
+export const mockTransactions: Transaction[] = [
+  {
+    id: `txn-${Date.now()}1`,
+    accountId: "acc-001",
+    date: "2024-01-15T10:30:00Z",
+    description: "Salary Credit",
+    type: "Credit",
+    amount: 50000.0,
+    balanceAfter: 250000.5,
+    beneficiaryAccount: "9876543456",
+    reference: "REF123456",
+    category: "Salary",
+    beneficiaryName: "Switch user 1",
+  },
+  {
+    id: `txn-${Date.now()}2`,
+    accountId: "acc-001",
+    date: "2024-01-14T14:20:00Z",
+    description: "ATM Withdrawal",
+    type: "Debit",
+    amount: 20000.0,
+    balanceAfter: 200000.5,
+    reference: "REF123457",
+    beneficiaryAccount: "9876763456",
+    category: "Withdrawal",
+    beneficiaryName: "Switch user 2",
+  },
+  {
+    id: `txn-${Date.now()}3`,
+    accountId: "acc-001",
+    date: "2024-01-13T16:45:00Z",
+    description: "Fund Transfer to John Doe",
+    type: "Debit",
+    amount: 15000.0,
+    balanceAfter: 220000.5,
+    reference: "REF123458",
+    category: "Transfer",
+    beneficiaryAccount: "9876543210",
+    beneficiaryName: "Switch user 3",
+  },
+];
