@@ -7,10 +7,6 @@ export const SuccessModal = dynamic(() => import("./success-modal"), {
   ssr: false,
 });
 
-export const InvoiceModal = dynamic(() => import("./invoice-modal"), {
-  ssr: false,
-});
-
 export const ConfirmLogoutModal = dynamic(
   () => import("./confirm-logout-modal"),
   {
