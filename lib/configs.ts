@@ -1,4 +1,5 @@
 import { getSession } from "./actions/get-session";
+import { decryptToken } from "./utils/oauth";
 
 const Configs = {
   baseUrl: process.env.NEXT_PUBLIC_APP_BASEURL,
@@ -9,7 +10,10 @@ const Configs = {
   getAuthorization: () => {
     if (typeof window !== "undefined") {
       const token = getSession();
-      return token ? { Authorization: `Bearer ${token}` } : {};
+      if (!token) return {};
+
+      const decryptedToken = decryptToken(token);
+      return { Authorization: `Bearer ${decryptedToken}` };
     }
     return {};
   },

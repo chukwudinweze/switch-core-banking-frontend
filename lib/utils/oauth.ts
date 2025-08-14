@@ -40,3 +40,22 @@ export const formatCurrency = (
     minimumFractionDigits: 2,
   }).format(amount);
 };
+
+import CryptoJS from "crypto-js";
+
+const SECRET_KEY = "switch-bank-secret-key";
+export function encryptToken(token: string) {
+  return CryptoJS.AES.encrypt(token, SECRET_KEY).toString();
+}
+
+export function decryptToken(encrypted?: string) {
+  if (!encrypted) return "";
+  try {
+    const bytes = CryptoJS.AES.decrypt(encrypted, SECRET_KEY);
+    const decrypted = bytes.toString(CryptoJS.enc.Utf8);
+    return decrypted || "";
+  } catch (err) {
+    console.warn("Decryption failed:", err);
+    return "";
+  }
+}

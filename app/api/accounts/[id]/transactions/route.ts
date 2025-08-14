@@ -185,6 +185,22 @@ export async function GET(request: NextRequest, { params }: PageProps) {
     // Simulate API delay
     await new Promise((resolve) => setTimeout(resolve, 600));
 
+    if (filteredTransactions.length === 0) {
+      return NextResponse.json({
+        succeeded: true,
+        code: 200,
+        message: "No transactions found",
+        data: [],
+        pageMeta: {
+          pageNumber: page,
+          pageSize: limit,
+          totalPages: 0,
+          totalRecords: 0,
+        },
+        error: null,
+      });
+    }
+
     return NextResponse.json({
       succeeded: true,
       code: 200,

@@ -13,6 +13,7 @@ import {
 import { ApiResponse, AuthResponseType } from "@/lib/types/responseTypes";
 import { AuthRequestType } from "../types/requestTypes";
 import Configs from "../configs";
+import { encryptToken } from "../utils/oauth";
 
 export async function apiAuthenticate(
   payload: AuthRequestType
@@ -34,13 +35,14 @@ export async function apiAuthenticate(
 
       // Store tokens
       if (res.data.data?.jwToken) {
-        sessionStorage.setItem(Configs.authToken, res.data.data.jwToken);
+        const encryptedToken = encryptToken(res.data.data.jwToken);
+        sessionStorage.setItem(Configs.authToken, encryptedToken);
 
         if ((res.data.data as any)?.refreshToken) {
-          sessionStorage.setItem(
-            "refreshToken",
+          const encryptedRefreshToken = encryptToken(
             (res.data.data as any).refreshToken
           );
+          sessionStorage.setItem("refreshToken", encryptedRefreshToken);
         }
 
         if (res.data.data?.expiresIn) {
