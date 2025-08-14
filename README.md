@@ -1,6 +1,6 @@
 # Tester Quick Guide
 
-This guide outlines the setup, test credentials, and core flows to verify for the assessment.
+This guide outlines the setup, test credentials, and core flows of the core banking app.
 
 ## Prerequisites
 
