@@ -1,9 +1,11 @@
 import Image from "next/image";
-import React from "react";
 import imageUrl from "@/public/images/brand-image.webp";
-import Login from "./auth/login/components/login";
 
-const page = () => {
+const MainTemplate = ({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) => {
   return (
     <section className="flex">
       <div
@@ -20,9 +22,10 @@ const page = () => {
           priority
         />
       </div>
-      <Login />
+
+      {children}
     </section>
   );
 };
 
-export default page;
+export default MainTemplate;
